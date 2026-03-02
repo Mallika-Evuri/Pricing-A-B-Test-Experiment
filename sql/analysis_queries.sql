@@ -17,10 +17,10 @@
    ============================================================================ */
 
 SELECT
-    group,
+    experimental_group,
     COUNT(*) AS total_users
 FROM pricing_ab_test
-GROUP BY group;
+GROUP BY experimental_group;
 
 
 
@@ -36,12 +36,12 @@ GROUP BY group;
    ============================================================================ */
 
 SELECT
-    group,
+    experimental_group,
     COUNT(*) AS users,
     SUM(purchased) AS total_purchases,
     ROUND(SUM(purchased) * 1.0 / COUNT(*), 4) AS conversion_rate
 FROM pricing_ab_test
-GROUP BY group;
+GROUP BY experimental_group;
 
 
 
@@ -57,11 +57,11 @@ GROUP BY group;
    ============================================================================ */
 
 SELECT
-    group,
+    experimental_group,
     ROUND(SUM(order_value) / SUM(purchased), 2) AS average_order_value
 FROM pricing_ab_test
 WHERE purchased = 1
-GROUP BY group;
+GROUP BY experimental_group;
 
 
 
@@ -81,10 +81,10 @@ GROUP BY group;
    ============================================================================ */
 
 SELECT
-    group,
+    experimental_group,
     ROUND(SUM(order_value) / COUNT(*), 2) AS revenue_per_user
 FROM pricing_ab_test
-GROUP BY group;
+GROUP BY experimental_group;
 
 
 
@@ -101,10 +101,10 @@ GROUP BY group;
 
 WITH conversion AS (
     SELECT
-        group,
+        experimental_group,
         SUM(purchased) * 1.0 / COUNT(*) AS conversion_rate
     FROM pricing_ab_test
-    GROUP BY group
+    GROUP BY experimental_group
 )
 
 SELECT
@@ -115,8 +115,8 @@ SELECT
     ) AS percent_lift
 FROM conversion c
 JOIN conversion t
-    ON c.group = 'control'
-   AND t.group = 'treatment';
+    ON c.experimental_group = 'control'
+   AND t.experimental_group = 'treatment';
 
 
 
@@ -132,15 +132,15 @@ JOIN conversion t
    ============================================================================ */
 
 SELECT
-    group,
+    experimental_group,
     device_type,
     COUNT(*) AS users,
     SUM(purchased) AS purchases,
     ROUND(SUM(purchased) * 1.0 / COUNT(*), 4) AS conversion_rate,
     ROUND(SUM(order_value) / COUNT(*), 2) AS revenue_per_user
 FROM pricing_ab_test
-GROUP BY group, device_type
-ORDER BY group, device_type;
+GROUP BY experimental_group, device_type
+ORDER BY experimental_group, device_type;
 
 
 
@@ -156,14 +156,14 @@ ORDER BY group, device_type;
    ============================================================================ */
 
 SELECT
-    group,
+    experimental_group,
     region,
     COUNT(*) AS users,
     ROUND(SUM(order_value), 2) AS total_revenue,
     ROUND(SUM(order_value) / COUNT(*), 2) AS revenue_per_user
 FROM pricing_ab_test
-GROUP BY group, region
-ORDER BY group, region;
+GROUP BY experimental_group, region
+ORDER BY experimental_group, region;
 
 
 
@@ -179,12 +179,12 @@ ORDER BY group, region;
    ============================================================================ */
 
 SELECT
-    group,
+    experimental_group,
     session_date,
     SUM(order_value) OVER (
-        PARTITION BY group
+        PARTITION BY experimental_group
         ORDER BY session_date
         ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
     ) AS cumulative_revenue
 FROM pricing_ab_test
-ORDER BY group, session_date;
+ORDER BY experimental_group, session_date;
