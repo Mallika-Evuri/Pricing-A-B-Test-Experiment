@@ -1,148 +1,73 @@
-# Pricing Strategy A/B Test Analysis
+# 📊 Pricing Strategy A/B Test Analysis
 
 ## Overview
 
-This project evaluates the impact of a 5% pricing reduction on conversion rate and overall revenue per user in an e-commerce environment.
+This project evaluates the impact of a **5% pricing reduction** on user conversion and overall revenue performance in an e-commerce environment.
 
-The objective was to determine whether increased purchase conversion offsets lower average order value and improves overall revenue performance.
-
----
-
-## Experiment Design
-
-- Total Users: 80,000  
-- Traffic Split: 50% Control / 50% Treatment  
-- Duration: 30 days  
-- Pricing Change: 5% reduction in treatment group  
-
-### Primary Metrics
-- Conversion Rate
-- Average Order Value (AOV)
-- Revenue per User (RPU) ← Primary Decision Metric
-
-### Statistical Tests
-- Two-Proportion Z-Test (Conversion Rate)
-- Independent Two-Sample T-Test (Revenue per User)
-- Confidence Level: 95%
+The objective was to determine whether increased purchase conversion offsets lower average order value and leads to higher **Revenue per User (RPU)**.
 
 ---
 
-## Key Results
+## 🧪 Experiment Design
 
-- Conversion Rate increased by ~2% absolute (~11% relative lift)
-- Revenue per User increased by ~₹12
-- Estimated Monthly Revenue Lift: ~₹6 million
-- Estimated Annual Revenue Impact: ~₹7.2 crore
-- Both improvements statistically significant (p < 0.001)
-
----
-
-## Business Interpretation
-
-Although the pricing strategy slightly reduced Average Order Value, the higher conversion rate led to an overall increase in revenue per user.
-
-Based on statistical significance and projected financial impact, the revised pricing strategy is recommended for full rollout.
+- **Total Users:** 80,000  
+- **Traffic Split:** 50% Control / 50% Treatment  
+- **Duration:** 30 days  
+- **Treatment:** 5% price reduction  
+- **Primary Decision Metric:** Revenue per User (RPU)
 
 ---
 
-## Project Components
+## 📈 Core Metrics
 
-### 1. Dataset Generation
-Synthetic dataset generated using Python to simulate user behavior under control and treatment pricing conditions.
+- Conversion Rate  
+- Average Order Value (AOV)  
+- Revenue per User (RPU)
 
-File:
-```
-src/generate_dataset.py
-```
+> RPU was selected as the primary metric because it captures the combined impact of conversion behavior and pricing changes.
 
 ---
 
-### 2. SQL Analysis
-SQL queries used to compute:
-- Traffic validation
-- Conversion rate
-- AOV
-- Revenue per user
-- Conversion lift
-- Segmentation analysis
-- Cumulative revenue (window function)
+## 📊 Statistical Testing
 
-File:
-```
-sql/analysis_queries.sql
-```
+- **Two-Proportion Z-Test** → Conversion Rate  
+- **Independent Two-Sample T-Test** → Revenue per User  
+- **Confidence Level:** 95%
+
+Both improvements were statistically validated.
 
 ---
 
-### 3. Statistical Testing & Visualization
-Jupyter Notebook includes:
-- Metric computation
-- Hypothesis testing
-- Revenue impact modeling
-- Visualization of key results
+## 🚀 Key Results
 
-File:
-```
-notebooks/pricing_ab_analysis.ipynb
-```
+- Conversion Rate increased by **~2% absolute (~11% relative lift)**  
+- Revenue per User increased by **~₹12**  
+- Estimated Monthly Revenue Lift: **~₹6M**  
+- Estimated Annual Revenue Impact: **~₹7.2 crore**  
+- Results statistically significant (**p < 0.001**)
 
 ---
 
-## Repository Structure
+## 💼 Business Interpretation
 
-```
-Pricing-A-B-Test-Experiment
-│
-├── data/
-│   └── pricing_ab_test_sample.csv
-│
-├── notebooks/
-│   └── pricing_ab_analysis.ipynb
-│
-├── sql/
-│   └── analysis_queries.sql
-│
-├── src/
-│   └── generate_dataset.py
-│
-├── requirements.txt
-└── README.md
-```
+Although the pricing strategy reduced Average Order Value, the increase in conversion rate more than compensated for the lower price, resulting in a net increase in revenue per user.
+
+Based on statistical validation and projected financial impact, the treatment pricing strategy is recommended for rollout, with ongoing margin monitoring.
 
 ---
 
-## Reproducibility
+## 📊 Power BI Dashboard
 
-To regenerate the dataset locally:
+The project includes an executive-style Power BI dashboard visualizing:
 
-```
-python src/generate_dataset.py
-```
+- Conversion comparison  
+- Revenue per user comparison  
+- Pricing tradeoff (AOV impact)  
+- Device-level segmentation  
+- Financial impact projection  
 
-Dependencies:
+### Dashboard Preview
 
-```
-pip install -r requirements.txt
-```
+![A/B Test Dashboard](dashboard/ab_pricing_experiment_dashboard.png)
 
----
-
-## Tools Used
-
-- Python (pandas, numpy, scipy, statsmodels)
-- SQL
-- Matplotlib
-- Google Colab
-- GitHub
-
----
-
-## Key Skills Demonstrated
-
-- Experimental Design
-- A/B Testing
-- Statistical Inference
-- Business Impact Modeling
-- SQL Analytics
-- Data Visualization
-- Revenue Optimization Strategy
+Power BI file available in:
