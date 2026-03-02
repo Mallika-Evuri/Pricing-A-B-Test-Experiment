@@ -68,6 +68,7 @@ The project includes an executive-style Power BI dashboard visualizing:
 
 ### Dashboard Preview
 
-![A/B Test Dashboard](dashboard/ab_pricing_experiment_dashboard.png)
+![A/B Test Dashboard](dashboard/ab_test_dashboard.png)
 
 Power BI file available in:
+`dashboard/ab_test_dashboard.pbix`
