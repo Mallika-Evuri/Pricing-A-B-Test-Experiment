@@ -24,7 +24,7 @@ def generate_pricing_ab_dataset(n=80000, seed=42):
     data.loc[control_mask, "purchased"] = np.random.binomial(1, 0.18, control_mask.sum())
     data.loc[treatment_mask, "purchased"] = np.random.binomial(1, 0.20, treatment_mask.sum())
 
-    data["order_value"] = 0
+    data["order_value"] = 0.0
 
     data.loc[control_mask & (data["purchased"] == 1), "order_value"] = \
         np.random.normal(1200, 200, (control_mask & (data["purchased"] == 1)).sum())
